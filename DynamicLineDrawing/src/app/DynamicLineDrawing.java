@@ -24,8 +24,8 @@ public class DynamicLineDrawing extends JPanel implements ActionListener {
 	 */
 	private static final long serialVersionUID = -3182864139827368021L;
 
-	Color MorphColor = new Color(255,255,255,75);
 	Random rnd = new Random();
+	Color MorphColor = new Color(rnd.nextInt(255),rnd.nextInt(255),rnd.nextInt(255),75);
 	boolean first = true;
 	Timer timer = new Timer(8, this);
 	int width = 1000;
@@ -110,14 +110,14 @@ public class DynamicLineDrawing extends JPanel implements ActionListener {
 			ys.set(i,newY);
 		}
 
-		int newRed = Math.abs((MorphColor.getRed() + (rnd.nextInt(10) - 10)) % 255);
-		int newGreen = Math.abs((MorphColor.getGreen() + (rnd.nextInt(10) - 10)) % 255);
-		int newBlue = Math.abs((MorphColor.getBlue() + (rnd.nextInt(10) - 10)) % 255);
+		int newRed = Math.abs((MorphColor.getRed() + (rnd.nextInt(20) - 20)) % 255);
+		int newGreen = Math.abs((MorphColor.getGreen() + (rnd.nextInt(20) - 20)) % 255);
+		int newBlue = Math.abs((MorphColor.getBlue() + (rnd.nextInt(20) - 20)) % 255);
 		//System.out.println("newRed:" + newRed + " newGreen:" + newGreen + " newBlue:" + newBlue);
-		while((newRed + newGreen + newBlue) < 150) {
+		while(newRed+newBlue+newGreen < 150) {
 			newRed += 10;
-			newBlue += 10;
 			newGreen += 10;
+			newBlue += 10;
 		}
 		MorphColor = new Color(newRed,newGreen,newBlue,75);
 		repaint();

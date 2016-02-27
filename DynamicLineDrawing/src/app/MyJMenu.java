@@ -52,13 +52,12 @@ public class MyJMenu extends JMenuBar {
 		public ArrayList<Tuple<Color,MultiPointCurve>> MultiplyCurve(Tuple<Color,MultiPointCurve> c,Tuple<Color,MultiPointCurve> n) {
 			//generate intermediary lines, to fill in empty space due to stretching
 			ArrayList<Tuple<Color,MultiPointCurve>> res = new ArrayList<Tuple<Color,MultiPointCurve>>();
-			res.add(new Tuple<Color,MultiPointCurve> (c.x,new MultiPointCurve(c.y))); //add original line
-			res.get(0).y.mult((double) iMult); //multiply original line by iMult
-			//store a copy of multiplied original line
-			MultiPointCurve copyC = new MultiPointCurve(res.get(0).y);
-			//multiply next line by iMult, store in a copy
+			MultiPointCurve copyC = new MultiPointCurve(c.y); //make copy of original line
+			copyC.mult((double) iMult); //multiply original line by iMult
+			res.add(new Tuple<Color,MultiPointCurve>(c.x,copyC)); //add multiplied original line to res
+			//store a copy of next line, multiply by iMult
 			MultiPointCurve copyN = new MultiPointCurve(n.y);
-			copyN.mult(iMult);
+			copyN.mult((double) iMult);
 			
 			if(iMult > 1) {
 				int diffColorR = (n.x.getRed())-(c.x.getRed());
@@ -69,8 +68,6 @@ public class MyJMenu extends JMenuBar {
 				ArrayList<Number> diffYs = new ArrayList<Number>();
 				for(int m=0;m<(copyC.xs.size());m++) {
 					diffXs.add(((copyN).xs).get(m).doubleValue() - ((copyC).xs).get(m).doubleValue());
-				}
-				for(int m=0;m<(copyC.ys.size());m++) {
 					diffYs.add(((copyN).ys).get(m).doubleValue() - ((copyC).ys).get(m).doubleValue());
 				}
 				for(int j=0;j<iMult;j++) {
@@ -85,8 +82,8 @@ public class MyJMenu extends JMenuBar {
 					}
 					MultiPointCurve curve = new MultiPointCurve(newXs,newYs);
 					res.add(new Tuple<Color,MultiPointCurve>(newColor,curve));
-					System.out.println(newXs);
-					System.out.println(newYs);
+					//System.out.println(newXs);
+					//System.out.println(newYs);
 				}	
 			}
 			
@@ -101,10 +98,10 @@ public class MyJMenu extends JMenuBar {
 				ArrayList<Tuple<Color,Tuple<MultiPointCurve,MultiPointCurve>>> MultBIcache = new ArrayList<Tuple<Color,Tuple<MultiPointCurve,MultiPointCurve>>>();
 				//build multiplied cache curves (to enlarge final image)
 				for(int i=0;i<(BIcache.size() - 1);i++) {
-					Tuple<Color,MultiPointCurve> cur = new Tuple<Color,MultiPointCurve>(BIcache.get(i).x,BIcache.get(i).y.x);
-					Tuple<Color,MultiPointCurve> next = new Tuple<Color,MultiPointCurve>(BIcache.get(i+1).x,BIcache.get(i+1).y.x);
-					Tuple<Color,MultiPointCurve> curFlip = new Tuple<Color,MultiPointCurve>(BIcache.get(i).x,BIcache.get(i).y.y);
-					Tuple<Color,MultiPointCurve> nextFlip = new Tuple<Color,MultiPointCurve>(BIcache.get(i+1).x,BIcache.get(i+1).y.y);
+					Tuple<Color,MultiPointCurve> cur = new Tuple<Color,MultiPointCurve>(BIcache.get(i).x,new MultiPointCurve(BIcache.get(i).y.x));
+					Tuple<Color,MultiPointCurve> next = new Tuple<Color,MultiPointCurve>(BIcache.get(i+1).x,new MultiPointCurve(BIcache.get(i+1).y.x));
+					Tuple<Color,MultiPointCurve> curFlip = new Tuple<Color,MultiPointCurve>(BIcache.get(i).x,new MultiPointCurve(BIcache.get(i).y.y));
+					Tuple<Color,MultiPointCurve> nextFlip = new Tuple<Color,MultiPointCurve>(BIcache.get(i+1).x,new MultiPointCurve(BIcache.get(i+1).y.y));
 					ArrayList<Tuple<Color,MultiPointCurve>> newCurves1 = MultiplyCurve(cur, next);
 					ArrayList<Tuple<Color,MultiPointCurve>> newCurves2 = MultiplyCurve(curFlip, nextFlip);
 					ArrayList<Tuple<Color,Tuple<MultiPointCurve,MultiPointCurve>>> combinedCurves = new ArrayList<Tuple<Color,Tuple<MultiPointCurve,MultiPointCurve>>>();
@@ -115,21 +112,26 @@ public class MyJMenu extends JMenuBar {
 					MultBIcache.addAll(combinedCurves);
 				}
 				//add the last curve in, because it was missed in the building for loop above
-				MultiPointCurve newEnd = BIcache.get(BIcache.size() - 1).y.x;
+				MultiPointCurve newEnd = new MultiPointCurve(BIcache.get(BIcache.size() - 1).y.x);
 				newEnd.mult(iMult);
-				MultiPointCurve newEndFlip = BIcache.get(BIcache.size() - 1).y.y;
+				MultiPointCurve newEndFlip = new MultiPointCurve(BIcache.get(BIcache.size() - 1).y.y);
 				newEndFlip.mult(iMult);
 				Tuple<MultiPointCurve,MultiPointCurve> endTup = new Tuple<MultiPointCurve,MultiPointCurve>(newEnd,newEndFlip);
 				Tuple<Color,Tuple<MultiPointCurve,MultiPointCurve>> endBigTup = new Tuple<Color,Tuple<MultiPointCurve,MultiPointCurve>>((BIcache.get(BIcache.size() - 1).x),endTup);
 				MultBIcache.add(endBigTup);
-				
-				Graphics2D buffImage = bi.createGraphics();
-				buffImage.setPaint(Color.BLACK);
-				buffImage.fillRect(0,0,bi.getWidth(),bi.getHeight());
-				for(int i=0;i<(BIcache.size());i++) {
-					((MultBIcache.get(i)).y).x.paintComponent(buffImage,iMult);
-					((MultBIcache.get(i)).y).y.paintComponent(buffImage,iMult);
+				//paint multiplied curves onto buffered image
+				Graphics2D graphics = bi.createGraphics();
+				//System.out.println(bi.getWidth() + " " + bi.getHeight());
+				graphics.setPaint(Color.BLACK);
+				graphics.fillRect(0,0,bi.getWidth(),bi.getHeight());
+				for(int i=0;i<(MultBIcache.size());i++) {
+					graphics.setPaint(MultBIcache.get(i).x);
+					//System.out.println(graphics.getColor());
+					//System.out.println(graphics.getColor().getAlpha());
+					((MultBIcache.get(i)).y).x.paintComponent(graphics,1);
+					((MultBIcache.get(i)).y).y.paintComponent(graphics,1);
 				}
+				graphics.drawString("It is painting", 5, 10);;
 				
 				File file = fc.getSelectedFile();
 				if(!(file.getPath().endsWith(".png"))) {
@@ -138,10 +140,9 @@ public class MyJMenu extends JMenuBar {
 				try {
 					ImageIO.write(bi, "png", file);
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
+				graphics.dispose();
 			}
 			
 		}
@@ -157,7 +158,6 @@ public class MyJMenu extends JMenuBar {
 			putValue(MNEMONIC_KEY, mnemonic);
 		}
 		public void actionPerformed(ActionEvent arg0) {
-			// TODO Clear action
 			content.first = true;
 			content.repaint();
 		}
@@ -189,3 +189,4 @@ public class MyJMenu extends JMenuBar {
 	
 	}
 }
+

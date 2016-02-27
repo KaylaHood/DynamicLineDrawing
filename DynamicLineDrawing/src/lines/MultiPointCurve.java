@@ -4,8 +4,6 @@ import java.awt.*;
 import java.awt.geom.CubicCurve2D;
 import java.util.ArrayList;
 
-import app.Tuple;
-
 public class MultiPointCurve {
 	/**
 	 * multiple inflection points on this line, as many as are present in
@@ -26,8 +24,8 @@ public class MultiPointCurve {
 	}
 	
 	public MultiPointCurve(MultiPointCurve c) {
-		xs = c.xs;
-		ys = c.ys;
+		xs = new ArrayList<Number>(c.xs);
+		ys = new ArrayList<Number>(c.ys);
 	}
 	
 	public void add(double n) {
@@ -43,9 +41,16 @@ public class MultiPointCurve {
 	
 	public void mult(double n) {
 		for(int i=0;i<xs.size();i++){
-			xs.set(i, (xs.get(i).doubleValue() * n));
-			ys.set(i, (ys.get(i).doubleValue() * n));
+			System.out.println("Original xs and ys:");
+			System.out.println("xs: " + xs.get(i));
+			System.out.println("ys: " + ys.get(i));
+			xs.set(i, ((xs.get(i).doubleValue()) * n));
+			ys.set(i, ((ys.get(i).doubleValue()) * n));
+			System.out.println("New xs and ys:");
+			System.out.println("xs: " + xs.get(i));
+			System.out.println("ys: " + ys.get(i));
 		}
+		
 	}
 	
 	public void div(double n) {
@@ -55,6 +60,8 @@ public class MultiPointCurve {
 	public void paintComponent(Graphics g,int multiplier) {
 		Graphics2D g2g = (Graphics2D) g;
 		for(int i=0;i<(xs.size() / 4);i+=4) {
+			//System.out.println("xs: " + xs.get(i) + " " + xs.get(i+1) + " " + xs.get(i+2) + " " + xs.get(i+3));
+			//System.out.println("ys: " + ys.get(i) + " " + ys.get(i+1) + " " + ys.get(i+2) + " " + ys.get(i+3));
 			CubicCurve2D.Double CC = new CubicCurve2D.Double((xs.get(i).doubleValue())*multiplier,(ys.get(i).doubleValue())*multiplier,(xs.get(i+1).doubleValue())*multiplier,(ys.get(i+1).doubleValue())*multiplier,(xs.get(i+2).doubleValue())*multiplier,(ys.get(i+2).doubleValue())*multiplier,(xs.get(i+3).doubleValue())*multiplier,(ys.get(i+3).doubleValue())*multiplier);
 			//System.out.println("curve being painted");
 			//System.out.println(g.getColor());
@@ -65,3 +72,4 @@ public class MultiPointCurve {
 
 
 }
+

@@ -34,7 +34,9 @@ public class MyJMenu extends JMenuBar {
 	JMenu fileMenu;
 	JMenu editMenu;
 	JMenuItem save;
+	JMenuItem saveLow;
 	JMenuItem clear;
+	JMenuItem whitebg;
 	
 	public class SaveAction extends AbstractAction {
 
@@ -54,10 +56,16 @@ public class MyJMenu extends JMenuBar {
 			ArrayList<Tuple<Color,MultiPointCurve>> res = new ArrayList<Tuple<Color,MultiPointCurve>>();
 			MultiPointCurve copyC = new MultiPointCurve(c.y); //make copy of original line
 			copyC.mult((double) iMult); //multiply original line by iMult
+			System.out.println("current curve:");
+			System.out.println(copyC.xs);
+			System.out.println(copyC.ys);
 			res.add(new Tuple<Color,MultiPointCurve>(c.x,copyC)); //add multiplied original line to res
 			//store a copy of next line, multiply by iMult
 			MultiPointCurve copyN = new MultiPointCurve(n.y);
 			copyN.mult((double) iMult);
+			System.out.println("next curve:");
+			System.out.println(copyN.xs);
+			System.out.println(copyN.ys);
 			
 			if(iMult > 1) {
 				int diffColorR = (n.x.getRed())-(c.x.getRed());
@@ -70,20 +78,35 @@ public class MyJMenu extends JMenuBar {
 					diffXs.add(((copyN).xs).get(m).doubleValue() - ((copyC).xs).get(m).doubleValue());
 					diffYs.add(((copyN).ys).get(m).doubleValue() - ((copyC).ys).get(m).doubleValue());
 				}
-				for(int j=0;j<iMult;j++) {
-					Color newColor = new Color((c.x.getRed())+(diffColorR*(j/iMult)),(c.x.getGreen())+(diffColorG*(j/iMult)),(c.x.getBlue())+(diffColorB*(j/iMult)),(c.x.getAlpha())+(diffColorA*(j/iMult)));
+				//System.out.println("diffXs:");
+				//System.out.println(diffXs);
+				//System.out.println("diffYs:");
+				//System.out.println(diffYs);
+				for(double j=0;j<iMult;j++) {
+					Color newColor = new Color((int) ((c.x.getRed())+(diffColorR*(j/iMult))),(int) ((c.x.getGreen())+(diffColorG*(j/iMult))),(int) ((c.x.getBlue())+(diffColorB*(j/iMult))),(int) ((c.x.getAlpha())+(diffColorA*(j/iMult))));
+					//System.out.println("Multiple #" + j);
 					ArrayList<Number> newXs = new ArrayList<Number>();
 					for(int m=0;m<diffXs.size();m++) {
-						newXs.add(copyC.xs.get(m).doubleValue() + (diffXs.get(m).doubleValue()*(j/iMult)));
+						double diff = (diffXs.get(m).doubleValue());
+						double modifier = (diff*(j/((double) iMult)));
+						double x = copyC.xs.get(m).doubleValue() + modifier;
+						//System.out.println("modifier: " + modifier + " , diff: " + diff);
+						//System.out.println(m + "x: " + x);
+						newXs.add(x);
 					}
 					ArrayList<Number> newYs = new ArrayList<Number>();
 					for(int m=0;m<diffYs.size();m++) {
-						newYs.add(copyC.ys.get(m).doubleValue() + (diffYs.get(m).doubleValue()*(j/iMult)));
+						double diff = (diffYs.get(m).doubleValue());
+						double modifier = (diff*(j/((double)iMult)));
+						double y = copyC.ys.get(m).doubleValue() + modifier;
+						//System.out.println("modifier: " + modifier + " , diff: " + diff);
+						//System.out.println(m + "y: " + y);
+						newYs.add(y);
 					}
 					MultiPointCurve curve = new MultiPointCurve(newXs,newYs);
 					res.add(new Tuple<Color,MultiPointCurve>(newColor,curve));
-					//System.out.println(newXs);
-					//System.out.println(newYs);
+					//System.out.println("newXs: \n" + newXs);
+					//System.out.println("newYs: \n" + newYs);
 				}	
 			}
 			
@@ -99,7 +122,13 @@ public class MyJMenu extends JMenuBar {
 				//build multiplied cache curves (to enlarge final image)
 				for(int i=0;i<(BIcache.size() - 1);i++) {
 					Tuple<Color,MultiPointCurve> cur = new Tuple<Color,MultiPointCurve>(BIcache.get(i).x,new MultiPointCurve(BIcache.get(i).y.x));
+					//System.out.println("actionPerformed current line:");
+					//System.out.println(cur.y.xs);
+					//System.out.println(cur.y.ys);
 					Tuple<Color,MultiPointCurve> next = new Tuple<Color,MultiPointCurve>(BIcache.get(i+1).x,new MultiPointCurve(BIcache.get(i+1).y.x));
+					//System.out.println("actionPerformed next line:");
+					//System.out.println(next.y.xs);
+					//System.out.println(next.y.ys);
 					Tuple<Color,MultiPointCurve> curFlip = new Tuple<Color,MultiPointCurve>(BIcache.get(i).x,new MultiPointCurve(BIcache.get(i).y.y));
 					Tuple<Color,MultiPointCurve> nextFlip = new Tuple<Color,MultiPointCurve>(BIcache.get(i+1).x,new MultiPointCurve(BIcache.get(i+1).y.y));
 					ArrayList<Tuple<Color,MultiPointCurve>> newCurves1 = MultiplyCurve(cur, next);
@@ -121,15 +150,56 @@ public class MyJMenu extends JMenuBar {
 				MultBIcache.add(endBigTup);
 				//paint multiplied curves onto buffered image
 				Graphics2D graphics = bi.createGraphics();
-				//System.out.println(bi.getWidth() + " " + bi.getHeight());
-				graphics.setPaint(Color.BLACK);
+				graphics.setPaint(content.BGColor);
 				graphics.fillRect(0,0,bi.getWidth(),bi.getHeight());
 				for(int i=0;i<(MultBIcache.size());i++) {
 					graphics.setPaint(MultBIcache.get(i).x);
-					//System.out.println(graphics.getColor());
-					//System.out.println(graphics.getColor().getAlpha());
 					((MultBIcache.get(i)).y).x.paintComponent(graphics,1);
 					((MultBIcache.get(i)).y).y.paintComponent(graphics,1);
+				}
+				graphics.drawString("It is painting", 5, 10);;
+				
+				File file = fc.getSelectedFile();
+				if(!(file.getPath().endsWith(".png"))) {
+					file = new File(((file).getPath()) + (".png"));
+				}
+				try {
+					ImageIO.write(bi, "png", file);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				graphics.dispose();
+			}
+			
+		}
+		
+	}
+	
+	public class SaveActionLow extends AbstractAction {
+
+		private static final long serialVersionUID = -440873695393031172L;
+
+		JFileChooser fc = new JFileChooser();
+		int iMult = 5;
+		BufferedImage bi = new BufferedImage((content.width)*iMult,(content.height)*iMult,BufferedImage.TYPE_INT_ARGB);
+		
+		public SaveActionLow(String name, Integer mnemonic) {
+			super(name);
+			putValue(MNEMONIC_KEY, mnemonic);
+		}
+		
+		public void actionPerformed(ActionEvent arg0) {
+			// TODO Save action
+			int returnVal = fc.showSaveDialog(MyJMenu.this.getTopLevelAncestor());
+			if(returnVal == JFileChooser.APPROVE_OPTION){
+				ArrayList<Tuple<Color,Tuple<MultiPointCurve,MultiPointCurve>>> BIcache = content.cache;
+				Graphics2D graphics = bi.createGraphics();
+				graphics.setPaint(content.BGColor);
+				graphics.fillRect(0,0,bi.getWidth(),bi.getHeight());
+				for(int i=0;i<(BIcache.size());i++) {
+					graphics.setPaint(BIcache.get(i).x);
+					((BIcache.get(i)).y).x.paintComponent(graphics,iMult);
+					((BIcache.get(i)).y).y.paintComponent(graphics,iMult);
 				}
 				graphics.drawString("It is painting", 5, 10);;
 				
@@ -158,7 +228,25 @@ public class MyJMenu extends JMenuBar {
 			putValue(MNEMONIC_KEY, mnemonic);
 		}
 		public void actionPerformed(ActionEvent arg0) {
+			content.cache = new ArrayList<Tuple<Color,Tuple<MultiPointCurve,MultiPointCurve>>>();
 			content.first = true;
+			content.repaint();
+		}
+		
+	}
+	
+	public class WhiteBGAction extends AbstractAction {
+
+		private static final long serialVersionUID = 1562408842167582203L;
+
+		public WhiteBGAction(String name, Integer mnemonic) {
+			super(name);
+			putValue(MNEMONIC_KEY, mnemonic);
+		}
+		public void actionPerformed(ActionEvent arg0) {
+			System.out.println("action performed : White BG");
+			content.BGColor = Color.white;
+			content.resetBG = true;
 			content.repaint();
 		}
 		
@@ -183,9 +271,17 @@ public class MyJMenu extends JMenuBar {
 		save.getAccessibleContext().setAccessibleDescription("");
 		fileMenu.add(save);
 		
+		saveLow = new JMenuItem(new SaveActionLow("Low Quality Save As...",KeyEvent.VK_L));
+		saveLow.getAccessibleContext().setAccessibleDescription("");
+		fileMenu.add(saveLow);
+		
 		clear = new JMenuItem(new ClearAction("Clear Canvas",KeyEvent.VK_C));
 		clear.getAccessibleContext().setAccessibleDescription("");
 		editMenu.add(clear);
+		
+		whitebg = new JMenuItem(new WhiteBGAction("White Background",KeyEvent.VK_W));
+		whitebg.getAccessibleContext().setAccessibleDescription("");
+		editMenu.add(whitebg);
 	
 	}
 }

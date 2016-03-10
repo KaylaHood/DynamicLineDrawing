@@ -25,8 +25,10 @@ public class DynamicLineDrawing extends JPanel implements ActionListener {
 	private static final long serialVersionUID = -3182864139827368021L;
 
 	Random rnd = new Random();
+	Color BGColor;
 	Color MorphColor = new Color(rnd.nextInt(255),rnd.nextInt(255),rnd.nextInt(255),75);
 	boolean first = true;
+	boolean resetBG = false;
 	Timer timer = new Timer(8, this);
 	int width = 1000;
 	int height = 800;
@@ -55,12 +57,12 @@ public class DynamicLineDrawing extends JPanel implements ActionListener {
 	}
 	
 	public DynamicLineDrawing() {
+		BGColor = Color.black;
 		rnd.setSeed(System.currentTimeMillis());
 		
 		this.addMouseListener(new MouseAdapter() {
 			public void mouseReleased(MouseEvent e) {
 				if(e.getID() == MouseEvent.MOUSE_RELEASED){ 
-					System.out.println("MouseEvent received");
 					for(double i = 0.0;i < (double)(xs.size());i+=1.0) {
 						xs.set((int)i, i);
 						ys.set((int)i,i);
@@ -71,7 +73,6 @@ public class DynamicLineDrawing extends JPanel implements ActionListener {
 			}
 			public void mousePressed(MouseEvent e) {
 				if(e.getID() == MouseEvent.MOUSE_PRESSED){ 
-					System.out.println("MouseEvent received");
 					first = false;
 					mouseX = e.getX();
 					mouseY = e.getY();
@@ -105,7 +106,6 @@ public class DynamicLineDrawing extends JPanel implements ActionListener {
 			} else if(newY < (i*(-20))) {
 				newY = -(i*20);
 			}
-			System.out.println("newX:" + newX + " newY:" + newY);
 			xs.set(i,newX);
 			ys.set(i,newY);
 		}
@@ -125,28 +125,43 @@ public class DynamicLineDrawing extends JPanel implements ActionListener {
 	
 	public void paintComponent(Graphics g) {
 		//super.paintComponent(g);
-		Graphics2D buffImage = image.createGraphics();
-		if(first) {
-			buffImage.setColor(Color.BLACK);
+		if(resetBG) {
+			resetBG = false;
+			Graphics2D buffImage = image.createGraphics();
+			buffImage.setColor(BGColor);
 			buffImage.fillRect(0,0,this.getWidth(),this.getHeight());
+			for(int i=0;i<cache.size();i++) {
+				buffImage.setColor(cache.get(i).x);
+				(cache.get(i).y.x).paintComponent(buffImage,1);
+				(cache.get(i).y.y).paintComponent(buffImage,1);
+			}
+			g.drawImage(image,0,0,null);
 		}
-		ArrayList<Number> xsMod = new ArrayList<Number>(xs);
-		ArrayList<Number> ysMod = new ArrayList<Number>(ys);
-		ArrayList<Number> xsModFlip = new ArrayList<Number>(xs);
-		ArrayList<Number> ysModFlip = new ArrayList<Number>(ys);
-		for(int i=0;i<(xsMod.size());i++) {
-			xsMod.set(i, mouseX + xs.get(i).doubleValue());
-			ysMod.set(i, mouseY + ys.get(i).doubleValue());
-			xsModFlip.set(i, mouseXFlip - xs.get(i).doubleValue());
-			ysModFlip.set(i, mouseYFlip + ys.get(i).doubleValue());
+		else {
+			Graphics2D buffImage = image.createGraphics();
+			if(first) {
+				first = false;
+				buffImage.setColor(BGColor);
+				buffImage.fillRect(0,0,this.getWidth(),this.getHeight());
+			}
+			ArrayList<Number> xsMod = new ArrayList<Number>(xs);
+			ArrayList<Number> ysMod = new ArrayList<Number>(ys);
+			ArrayList<Number> xsModFlip = new ArrayList<Number>(xs);
+			ArrayList<Number> ysModFlip = new ArrayList<Number>(ys);
+			for(int i=0;i<(xsMod.size());i++) {
+				xsMod.set(i, mouseX + xs.get(i).doubleValue());
+				ysMod.set(i, mouseY + ys.get(i).doubleValue());
+				xsModFlip.set(i, mouseXFlip - xs.get(i).doubleValue());
+				ysModFlip.set(i, mouseYFlip + ys.get(i).doubleValue());
+			}
+			buffImage.setColor(MorphColor);
+			MultiPointCurve genCurve = new MultiPointCurve(xsMod, ysMod);
+			MultiPointCurve genCurveFlip = new MultiPointCurve(xsModFlip, ysModFlip);
+			genCurve.paintComponent(buffImage,1);
+			genCurveFlip.paintComponent(buffImage,1);
+			cache.add(new Tuple<Color,Tuple<MultiPointCurve,MultiPointCurve>>(MorphColor,new Tuple<MultiPointCurve,MultiPointCurve>(genCurve,genCurveFlip)));
+			g.drawImage(image,0,0,null);
 		}
-		buffImage.setColor(MorphColor);
-		MultiPointCurve genCurve = new MultiPointCurve(xsMod, ysMod);
-		MultiPointCurve genCurveFlip = new MultiPointCurve(xsModFlip, ysModFlip);
-		genCurve.paintComponent(buffImage,1);
-		genCurveFlip.paintComponent(buffImage,1);
-		cache.add(new Tuple<Color,Tuple<MultiPointCurve,MultiPointCurve>>(MorphColor,new Tuple<MultiPointCurve,MultiPointCurve>(genCurve,genCurveFlip)));
-		g.drawImage(image,0,0,null);
 	}
 
 }

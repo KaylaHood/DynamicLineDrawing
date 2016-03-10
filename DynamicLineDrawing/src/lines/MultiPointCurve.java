@@ -41,14 +41,8 @@ public class MultiPointCurve {
 	
 	public void mult(double n) {
 		for(int i=0;i<xs.size();i++){
-			System.out.println("Original xs and ys:");
-			System.out.println("xs: " + xs.get(i));
-			System.out.println("ys: " + ys.get(i));
 			xs.set(i, ((xs.get(i).doubleValue()) * n));
 			ys.set(i, ((ys.get(i).doubleValue()) * n));
-			System.out.println("New xs and ys:");
-			System.out.println("xs: " + xs.get(i));
-			System.out.println("ys: " + ys.get(i));
 		}
 		
 	}

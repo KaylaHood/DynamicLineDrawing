@@ -1,0 +1,18 @@
+
+
+/**
+ * @author khood
+ */
+class RegisterBank(var regsArray : Array[Register]) extends Component{
+  def wireChanged() = {
+    
+  }
+  def writeData(fname : String, fname2 : String) = {
+    val dos = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(fname)))
+    for (i <- memory) dos.writeInt(i)
+    dos.close()
+    val dos2 = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(fname2)))
+    for (i <- regs) dos2.writeInt(i)
+    dos2.close()
+  }
+}

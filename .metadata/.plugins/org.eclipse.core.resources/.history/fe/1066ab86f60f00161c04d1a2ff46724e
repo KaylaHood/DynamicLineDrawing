@@ -1,0 +1,11 @@
+
+
+/**
+ * @author khood
+ */
+class Memory extends Component{
+  val memArray
+  def wireChanged() = {
+    
+  }
+}

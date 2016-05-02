@@ -1,0 +1,10 @@
+
+
+/**
+ * @author khood
+ */
+class Register extends Component{
+  def startStep() {
+    
+  }
+}

@@ -1,0 +1,10 @@
+
+
+/**
+ * @author khood
+ */
+class RegisterBank(var regsArray : Array[Register]) extends Component{
+  def wireChanged() = {
+    
+  }
+}

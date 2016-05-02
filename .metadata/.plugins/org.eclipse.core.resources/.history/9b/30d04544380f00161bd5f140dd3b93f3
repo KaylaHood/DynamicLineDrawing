@@ -1,0 +1,7 @@
+
+
+
+class Wire (int numberbits) {
+  var bitarray = Array.fill(numberbits)(0)
+
+}

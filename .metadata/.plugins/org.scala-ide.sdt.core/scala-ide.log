@@ -1,0 +1,312 @@
+2016-04-30 19:28:12,130 ERROR [main] - Statistics - Statistics file `C:\Users\kayla\.scalaide\statistics` is corrupted. A new one is being created. Corrupted content was:
+
+com.cedarsoftware.util.io.JsonIoException: error parsing JSON value
+	at com.cedarsoftware.util.io.JsonReader.readObject(JsonReader.java:529)
+	at com.cedarsoftware.util.io.JsonReader.jsonToJava(JsonReader.java:289)
+	at com.cedarsoftware.util.io.JsonReader.jsonToJava(JsonReader.java:262)
+	at org.scalaide.core.internal.statistics.Statistics.org$scalaide$core$internal$statistics$Statistics$$read(Statistics.scala:74)
+	at org.scalaide.core.internal.statistics.Statistics$$anonfun$readStats$1.apply(Statistics.scala:52)
+	at org.scalaide.core.internal.statistics.Statistics$$anonfun$readStats$1.apply(Statistics.scala:51)
+	at org.scalaide.core.ScalaIdeDataStore$$anonfun$validate$2.apply(ScalaIdeDataStore.scala:59)
+	at org.scalaide.util.eclipse.EclipseUtils$$anon$3.run(EclipseUtils.scala:214)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.scalaide.util.eclipse.EclipseUtils$.withSafeRunner(EclipseUtils.scala:210)
+	at org.scalaide.core.ScalaIdeDataStore$.validate(ScalaIdeDataStore.scala:58)
+	at org.scalaide.core.internal.statistics.Statistics.readStats(Statistics.scala:51)
+	at org.scalaide.core.internal.statistics.Statistics.<init>(Statistics.scala:30)
+	at org.scalaide.core.internal.ScalaPlugin.stats$lzycompute(ScalaPlugin.scala:135)
+	at org.scalaide.core.internal.ScalaPlugin.stats(ScalaPlugin.scala:135)
+	at org.scalaide.core.internal.ScalaPlugin.statistics(ScalaPlugin.scala:138)
+	at org.scalaide.core.internal.ScalaPlugin.start(ScalaPlugin.scala:109)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl$3.run(BundleContextImpl.java:771)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl$3.run(BundleContextImpl.java:1)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl.startActivator(BundleContextImpl.java:764)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl.start(BundleContextImpl.java:721)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle.startWorker0(EquinoxBundle.java:936)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$EquinoxModule.startWorker(EquinoxBundle.java:319)
+	at org.eclipse.osgi.container.Module.doStart(Module.java:571)
+	at org.eclipse.osgi.container.Module.start(Module.java:439)
+	at org.eclipse.osgi.framework.util.SecureAction.start(SecureAction.java:454)
+	at org.eclipse.osgi.internal.hooks.EclipseLazyStarter.postFindLocalClass(EclipseLazyStarter.java:107)
+	at org.eclipse.osgi.internal.loader.classpath.ClasspathManager.findLocalClass(ClasspathManager.java:531)
+	at org.eclipse.osgi.internal.loader.ModuleClassLoader.findLocalClass(ModuleClassLoader.java:324)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findLocalClass(BundleLoader.java:320)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClassInternal(BundleLoader.java:395)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:345)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:337)
+	at org.eclipse.osgi.internal.loader.ModuleClassLoader.loadClass(ModuleClassLoader.java:160)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle.loadClass(EquinoxBundle.java:568)
+	at org.eclipse.core.internal.registry.osgi.RegistryStrategyOSGI.createExecutableExtension(RegistryStrategyOSGI.java:174)
+	at org.eclipse.core.internal.registry.ExtensionRegistry.createExecutableExtension(ExtensionRegistry.java:905)
+	at org.eclipse.core.internal.registry.ConfigurationElement.createExecutableExtension(ConfigurationElement.java:243)
+	at org.eclipse.core.internal.registry.ConfigurationElementHandle.createExecutableExtension(ConfigurationElementHandle.java:55)
+	at org.eclipse.jdt.internal.ui.filters.FilterDescriptor$1.run(FilterDescriptor.java:132)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.jdt.internal.ui.filters.FilterDescriptor.createViewerFilter(FilterDescriptor.java:136)
+	at org.eclipse.jdt.ui.actions.CustomFiltersActionGroup$FilterItem.getFilterInstance(CustomFiltersActionGroup.java:187)
+	at org.eclipse.jdt.ui.actions.CustomFiltersActionGroup.updateViewerFilters(CustomFiltersActionGroup.java:516)
+	at org.eclipse.jdt.ui.actions.CustomFiltersActionGroup.<init>(CustomFiltersActionGroup.java:275)
+	at org.eclipse.jdt.ui.actions.CustomFiltersActionGroup.<init>(CustomFiltersActionGroup.java:241)
+	at org.eclipse.jdt.internal.ui.packageview.PackageExplorerActionGroup.<init>(PackageExplorerActionGroup.java:148)
+	at org.eclipse.jdt.internal.ui.packageview.PackageExplorerPart.makeActions(PackageExplorerPart.java:804)
+	at org.eclipse.jdt.internal.ui.packageview.PackageExplorerPart.createPartControl(PackageExplorerPart.java:505)
+	at org.eclipse.ui.internal.e4.compatibility.CompatibilityPart.createPartControl(CompatibilityPart.java:141)
+	at org.eclipse.ui.internal.e4.compatibility.CompatibilityView.createPartControl(CompatibilityView.java:155)
+	at org.eclipse.ui.internal.e4.compatibility.CompatibilityPart.create(CompatibilityPart.java:327)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.e4.core.internal.di.MethodRequestor.execute(MethodRequestor.java:55)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.processAnnotated(InjectorImpl.java:888)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.processAnnotated(InjectorImpl.java:869)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.inject(InjectorImpl.java:120)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.internalMake(InjectorImpl.java:337)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.make(InjectorImpl.java:258)
+	at org.eclipse.e4.core.contexts.ContextInjectionFactory.make(ContextInjectionFactory.java:162)
+	at org.eclipse.e4.ui.internal.workbench.ReflectionContributionFactory.createFromBundle(ReflectionContributionFactory.java:104)
+	at org.eclipse.e4.ui.internal.workbench.ReflectionContributionFactory.doCreate(ReflectionContributionFactory.java:73)
+	at org.eclipse.e4.ui.internal.workbench.ReflectionContributionFactory.create(ReflectionContributionFactory.java:55)
+	at org.eclipse.e4.ui.workbench.renderers.swt.ContributedPartRenderer.createWidget(ContributedPartRenderer.java:127)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.createWidget(PartRenderingEngine.java:983)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:662)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$6.run(PartRenderingEngine.java:547)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.createGui(PartRenderingEngine.java:531)
+	at org.eclipse.e4.ui.workbench.renderers.swt.ElementReferenceRenderer.createWidget(ElementReferenceRenderer.java:69)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.createWidget(PartRenderingEngine.java:983)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:662)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:766)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.access$2(PartRenderingEngine.java:737)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$7.run(PartRenderingEngine.java:731)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.createGui(PartRenderingEngine.java:715)
+	at org.eclipse.e4.ui.workbench.renderers.swt.StackRenderer.showTab(StackRenderer.java:1246)
+	at org.eclipse.e4.ui.workbench.renderers.swt.LazyStackRenderer.postProcess(LazyStackRenderer.java:103)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:678)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:766)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.access$2(PartRenderingEngine.java:737)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$7.run(PartRenderingEngine.java:731)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.createGui(PartRenderingEngine.java:715)
+	at org.eclipse.e4.ui.workbench.renderers.swt.SWTPartRenderer.processContents(SWTPartRenderer.java:69)
+	at org.eclipse.e4.ui.workbench.renderers.swt.SashRenderer.processContents(SashRenderer.java:185)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:674)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:766)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.access$2(PartRenderingEngine.java:737)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$7.run(PartRenderingEngine.java:731)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.createGui(PartRenderingEngine.java:715)
+	at org.eclipse.e4.ui.workbench.renderers.swt.SWTPartRenderer.processContents(SWTPartRenderer.java:69)
+	at org.eclipse.e4.ui.workbench.renderers.swt.SashRenderer.processContents(SashRenderer.java:185)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:674)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:766)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.access$2(PartRenderingEngine.java:737)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$7.run(PartRenderingEngine.java:731)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.createGui(PartRenderingEngine.java:715)
+	at org.eclipse.e4.ui.workbench.renderers.swt.SWTPartRenderer.processContents(SWTPartRenderer.java:69)
+	at org.eclipse.e4.ui.workbench.renderers.swt.PerspectiveRenderer.processContents(PerspectiveRenderer.java:49)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:674)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:766)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.access$2(PartRenderingEngine.java:737)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$7.run(PartRenderingEngine.java:731)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.createGui(PartRenderingEngine.java:715)
+	at org.eclipse.e4.ui.workbench.renderers.swt.PerspectiveStackRenderer.showTab(PerspectiveStackRenderer.java:103)
+	at org.eclipse.e4.ui.workbench.renderers.swt.LazyStackRenderer.postProcess(LazyStackRenderer.java:103)
+	at org.eclipse.e4.ui.workbench.renderers.swt.PerspectiveStackRenderer.postProcess(PerspectiveStackRenderer.java:77)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:678)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:766)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.access$2(PartRenderingEngine.java:737)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$7.run(PartRenderingEngine.java:731)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.createGui(PartRenderingEngine.java:715)
+	at org.eclipse.e4.ui.workbench.renderers.swt.SWTPartRenderer.processContents(SWTPartRenderer.java:69)
+	at org.eclipse.e4.ui.workbench.renderers.swt.SashRenderer.processContents(SashRenderer.java:185)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:674)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:766)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.access$2(PartRenderingEngine.java:737)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$7.run(PartRenderingEngine.java:731)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.createGui(PartRenderingEngine.java:715)
+	at org.eclipse.e4.ui.workbench.renderers.swt.SWTPartRenderer.processContents(SWTPartRenderer.java:69)
+	at org.eclipse.e4.ui.workbench.renderers.swt.WBWRenderer.processContents(WBWRenderer.java:663)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:674)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:766)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.access$2(PartRenderingEngine.java:737)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$7.run(PartRenderingEngine.java:731)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.createGui(PartRenderingEngine.java:715)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$9.run(PartRenderingEngine.java:1078)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1032)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:148)
+	at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:636)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:579)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:150)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:135)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:134)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:380)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:235)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:648)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:603)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1465)
+Caused by: com.cedarsoftware.util.io.JsonIoException: EOF reached prematurely
+	at com.cedarsoftware.util.io.JsonParser.error(JsonParser.java:584)
+	at com.cedarsoftware.util.io.JsonParser.readValue(JsonParser.java:278)
+	at com.cedarsoftware.util.io.JsonReader.readObject(JsonReader.java:521)
+	... 159 more
+2016-04-30 19:31:03,126  WARN [ModalContext] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-04-30 19:31:03,128  WARN [ModalContext] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-04-30 19:31:03,251  WARN [ModalContext] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-04-30 19:31:03,251  WARN [ModalContext] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-04-30 19:31:03,825  WARN [Worker-4] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-04-30 19:31:03,826  WARN [Worker-4] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-04-30 19:31:06,242  WARN [Java indexing] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-04-30 19:31:06,242  WARN [Java indexing] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-04-30 19:31:14,138  WARN [Worker-4] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-04-30 19:31:14,138  WARN [Worker-4] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-04-30 19:42:20,969  WARN [main] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-04-30 19:42:20,969  WARN [main] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-04-30 19:52:54,087  WARN [Worker-3] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-04-30 19:52:54,088  WARN [Worker-3] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-04-30 19:54:14,687  WARN [Worker-0] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-04-30 19:54:14,688  WARN [Worker-0] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-04-30 19:58:02,528  WARN [Worker-1] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-04-30 19:58:02,528  WARN [Worker-1] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-04-30 19:58:20,687  WARN [Worker-6] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-04-30 19:58:20,688  WARN [Worker-6] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-04-30 19:58:48,490  WARN [Worker-5] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-04-30 19:58:48,491  WARN [Worker-5] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-04-30 19:59:03,856  WARN [Worker-6] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-04-30 19:59:03,856  WARN [Worker-6] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-04-30 19:59:10,256  WARN [Worker-6] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-04-30 19:59:10,256  WARN [Worker-6] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-04-30 19:59:55,756  WARN [Worker-2] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-04-30 19:59:55,757  WARN [Worker-2] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-04-30 20:01:27,583  WARN [Worker-0] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-04-30 20:01:27,584  WARN [Worker-0] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-04-30 20:01:42,085  WARN [Worker-1] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-04-30 20:01:42,085  WARN [Worker-1] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-04-30 20:36:15,930  WARN [Worker-4] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-04-30 20:36:15,930  WARN [Worker-4] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-04-30 20:37:05,736  WARN [Worker-1] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-04-30 20:37:05,737  WARN [Worker-1] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-04-30 20:37:26,107  WARN [Worker-4] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-04-30 20:37:26,108  WARN [Worker-4] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-04-30 20:37:50,666  WARN [Worker-10] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-04-30 20:37:50,666  WARN [Worker-10] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-04-30 20:37:58,970  WARN [Worker-10] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-04-30 20:37:58,970  WARN [Worker-10] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-04-30 20:38:13,049  WARN [Worker-1] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-04-30 20:38:13,050  WARN [Worker-1] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-04-30 20:38:20,083  WARN [Worker-3] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-04-30 20:38:20,083  WARN [Worker-3] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-04-30 20:38:25,414  WARN [Worker-4] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-04-30 20:38:25,414  WARN [Worker-4] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-04-30 20:38:30,875  WARN [Worker-1] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-04-30 20:38:30,875  WARN [Worker-1] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-04-30 20:38:35,599  WARN [Worker-2] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-04-30 20:38:35,600  WARN [Worker-2] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-04-30 20:38:40,155  WARN [Worker-4] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-04-30 20:38:40,155  WARN [Worker-4] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-04-30 20:38:46,783  WARN [Worker-2] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-04-30 20:38:46,783  WARN [Worker-2] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-05-01 15:12:59,416  WARN [main] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-05-01 15:12:59,425  WARN [main] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-05-01 15:12:59,430  WARN [main] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-05-01 15:12:59,430  WARN [main] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-05-01 18:17:34,531  WARN [Worker-20] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-05-01 18:17:34,532  WARN [Worker-20] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-05-01 18:17:34,563  WARN [Worker-20] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-05-01 18:17:34,563  WARN [Worker-20] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-05-01 18:19:29,643  WARN [Worker-16] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-05-01 18:19:29,644  WARN [Worker-16] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-05-01 18:43:15,833  WARN [Worker-23] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-05-01 18:43:15,833  WARN [Worker-23] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-05-01 18:43:37,863  WARN [Worker-24] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-05-01 18:43:37,863  WARN [Worker-24] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-05-01 18:43:47,283  WARN [Worker-24] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-05-01 18:43:47,283  WARN [Worker-24] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-05-01 18:45:00,123  WARN [Worker-23] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-05-01 18:45:00,123  WARN [Worker-23] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-05-01 18:45:11,861  WARN [Worker-21] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-05-01 18:45:11,861  WARN [Worker-21] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-05-01 18:48:23,011  WARN [Worker-23] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-05-01 18:48:23,011  WARN [Worker-23] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-05-01 18:48:49,488  WARN [Worker-20] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-05-01 18:48:49,488  WARN [Worker-20] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-05-01 18:49:33,753  WARN [Worker-24] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-05-01 18:49:33,753  WARN [Worker-24] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-05-01 18:49:38,590  WARN [Worker-21] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-05-01 18:49:38,590  WARN [Worker-21] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-05-01 18:50:37,410  WARN [Worker-25] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-05-01 18:50:37,410  WARN [Worker-25] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-05-01 18:50:48,971  WARN [Worker-24] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-05-01 18:50:48,971  WARN [Worker-24] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-05-01 18:51:12,272  WARN [Worker-25] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-05-01 18:51:12,273  WARN [Worker-25] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-05-01 20:14:48,335  WARN [Worker-34] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-05-01 20:14:48,335  WARN [Worker-34] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-05-01 20:14:53,828  WARN [Worker-37] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-05-01 20:14:53,828  WARN [Worker-37] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-05-01 20:15:09,687  WARN [Worker-32] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-05-01 20:15:09,687  WARN [Worker-32] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-05-01 20:38:27,880  WARN [Worker-37] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-05-01 20:38:27,880  WARN [Worker-37] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-05-01 20:39:15,556  WARN [Worker-34] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-05-01 20:39:15,556  WARN [Worker-34] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-05-01 20:44:20,436  WARN [Worker-35] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-05-01 20:44:20,436  WARN [Worker-35] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-05-01 20:44:34,241  WARN [Worker-37] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-05-01 20:44:34,241  WARN [Worker-37] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-05-01 20:45:33,589  WARN [Worker-39] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-05-01 20:45:33,589  WARN [Worker-39] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-05-01 20:45:58,820  WARN [Worker-39] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-05-01 20:45:58,821  WARN [Worker-39] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-05-01 20:47:09,404  WARN [Worker-28] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-05-01 20:47:09,404  WARN [Worker-28] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-05-01 20:47:28,456  WARN [Worker-32] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-05-01 20:47:28,456  WARN [Worker-32] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-05-01 21:00:42,249  WARN [Worker-34] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-05-01 21:00:42,250  WARN [Worker-34] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-05-01 21:42:04,769  WARN [Worker-32] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-05-01 21:42:04,769  WARN [Worker-32] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-05-01 21:42:14,834  WARN [Worker-43] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-05-01 21:42:14,834  WARN [Worker-43] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-05-01 21:42:28,342  WARN [Worker-40] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-05-01 21:42:28,342  WARN [Worker-40] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-05-01 22:07:44,505  WARN [Worker-32] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-05-01 22:07:44,506  WARN [Worker-32] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-05-01 22:19:15,364 ERROR [Text Viewer Hover Presenter] - IScalaPresentationCompiler$ - Ignoring InterruptException
+2016-05-01 22:19:15,364 ERROR [Text Viewer Hover Presenter] - IScalaPresentationCompiler$ - Ignoring InterruptException
+2016-05-01 22:19:15,364 ERROR [Text Viewer Hover Presenter] - IScalaPresentationCompiler$ - Ignoring InterruptException
+2016-05-01 22:19:15,364 ERROR [Text Viewer Hover Presenter] - IScalaPresentationCompiler$ - Ignoring InterruptException
+2016-05-01 22:19:30,305  WARN [Worker-49] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-05-01 22:19:30,305  WARN [Worker-49] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-05-01 22:25:29,141  WARN [org.scalaide.ui.internal.reconciliation.ScalaReconciler] - TraverserImpl$ - Skipping annotation, position length = 0, position offset = 249
+2016-05-01 22:25:29,141  WARN [org.scalaide.ui.internal.reconciliation.ScalaReconciler] - TraverserImpl$ - Skipping annotation, position length = 0, position offset = 249
+2016-05-01 22:25:31,199  WARN [org.scalaide.ui.internal.reconciliation.ScalaReconciler] - TraverserImpl$ - Skipping annotation, position length = 0, position offset = 249
+2016-05-01 22:25:31,205  WARN [org.scalaide.ui.internal.reconciliation.ScalaReconciler] - TraverserImpl$ - Skipping annotation, position length = 0, position offset = 249
+2016-05-01 22:26:44,584 ERROR [Text Viewer Hover Presenter] - IScalaPresentationCompiler$ - Ignoring InterruptException
+2016-05-01 22:26:44,584 ERROR [Text Viewer Hover Presenter] - IScalaPresentationCompiler$ - Ignoring InterruptException
+2016-05-01 22:26:44,584 ERROR [Text Viewer Hover Presenter] - IScalaPresentationCompiler$ - Ignoring InterruptException
+2016-05-01 22:26:44,584 ERROR [Text Viewer Hover Presenter] - IScalaPresentationCompiler$ - Ignoring InterruptException
+2016-05-01 22:27:18,702  WARN [Worker-48] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-05-01 22:27:18,702  WARN [Worker-48] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-05-01 22:28:31,991  WARN [Worker-38] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-05-01 22:28:31,992  WARN [Worker-38] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-05-01 22:29:32,045  WARN [Worker-46] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-05-01 22:29:32,046  WARN [Worker-46] - ScalaProject - Project MIPSProcessor runs on platform default installation.
+2016-05-01 22:29:51,035  WARN [Worker-48] - ScalaProject - Project MIPSProcessor has platform default sourceLevel.
+2016-05-01 22:29:51,036  WARN [Worker-48] - ScalaProject - Project MIPSProcessor runs on platform default installation.

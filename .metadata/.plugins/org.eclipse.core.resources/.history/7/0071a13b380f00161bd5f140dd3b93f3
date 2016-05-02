@@ -1,0 +1,7 @@
+
+
+
+class Wire {
+  var numberBits = 0
+
+}

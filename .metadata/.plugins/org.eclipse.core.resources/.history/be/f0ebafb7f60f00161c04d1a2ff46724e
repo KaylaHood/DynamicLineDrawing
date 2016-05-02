@@ -1,0 +1,11 @@
+
+
+/**
+ * @author khood
+ */
+class Memory extends Component{
+  var memArray = null
+  def wireChanged() = {
+    
+  }
+}

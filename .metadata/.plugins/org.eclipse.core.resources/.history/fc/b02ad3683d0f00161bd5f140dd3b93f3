@@ -1,0 +1,11 @@
+
+
+/**
+ * @author khood
+ */
+class Register extends Component{
+   //used for the PC register
+  def startStep() {
+    
+  }
+}

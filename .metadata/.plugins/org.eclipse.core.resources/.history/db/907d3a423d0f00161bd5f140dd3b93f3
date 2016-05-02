@@ -1,0 +1,8 @@
+
+
+/**
+ * @author khood
+ */
+class Component {
+  def wireChanged()
+}

@@ -1,0 +1,8 @@
+
+
+
+class Wire(int bitsamt) {
+  var numberBits
+  var bits
+  def Wire(
+}

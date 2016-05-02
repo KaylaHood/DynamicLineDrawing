@@ -1,0 +1,14 @@
+
+
+/**
+ * @author khood
+ */
+class Register(val bitArray : Array[Int]) extends Component{
+   //used for the PC register
+  def startStep() {
+    
+  }
+  def wireChanged() = {
+    
+  }
+}
